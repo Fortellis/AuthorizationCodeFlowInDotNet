@@ -29,15 +29,15 @@ app.MapPost("/token", async (HttpRequest request) => {
         body = await reader.ReadToEndAsync();
     }
     Console.WriteLine("This is the body of the request: " + body);
-    var url = new Uri("https://identity-dev.fortellis.io/oauth2/aus1ni5i9n9WkzcYa2p7/v1/token");
+    var url = new Uri("https://identity.fortellis.io/oauth2/aus1p1ixy7YL8cMq02p7/v1/token");
     var handler = new HttpClientHandler();
     using var client = new HttpClient();
-    client.DefaultRequestHeaders.Add("Authorization", "Basic dXA5aVlDM2lGMkhPcllPWlZTaVhCUGRnQVhmeVg5NDk6YWRFUlpRNnFaQ3FLMDE2eA==");
+    client.DefaultRequestHeaders.Add("Authorization", "Basic {yourAPIKey:APISecret}");
     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     HttpContent data = new FormUrlEncodedContent(new[]
     {
         new KeyValuePair<string, string>("grant_type", "authorization_code"),
-        new KeyValuePair<string, string>("redirect_uri", "http://localhost:5148/"),
+        new KeyValuePair<string, string>("redirect_uri", "http://localhost:{yourPort}/"),
         new KeyValuePair<string, string>("code", body)
     });
 
